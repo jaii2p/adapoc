@@ -1,0 +1,14 @@
+0x18864c638  ImageIO.__text_start
+0x188655da4  IIOReadPlugin.prepareGeometry
+0x1886684cc  IIOReadPlugin.Validate_png_info
+0x1886708d4  png_check_chunk_length
+0x1886765d4  readExifData
+0x18867eda4  IIOReadPlugin.allocateBlockArray(uint)
+0x18865dcf0  __ImageIO_Malloc
+0x188771a90  jpeg_make_d_derived_tbl
+0x18868c268  EnumerateExifDataUsingBlock
+0x1887db988  GlobalPNGInfo.setCurrentBufferRowBytes(uint)
+0x18889e10c  ImageIOPixelConverter.AdjustRowBytes
+0x188aa5eb4  JP2ReadPlugin.decodeImageImp
+0x188aa6294  JP2.decodeImageImp.call_AdjustRowBytes
+0x18868f2c4  IIOImageRead.validateFileSize

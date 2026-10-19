@@ -18,9 +18,14 @@ theoretical.
 
 | section | target | what's inside |
 |---|---|---|
-| [`iOS/`](iOS/) | Apple iOS / iPadOS (stock, unjailbroken) | on-device confirmed findings + report + PoC + generator per finding |
+| [`iOS/`](iOS/) | Apple iOS / iPadOS (stock, unjailbroken) | on-device confirmed findings + report + PoC + generator per finding (+ labeled RE notebook) |
 | [`glibc/`](glibc/) | Debian glibc 2.43-4 | confirmed regex OOM DoS + wordexp NULL-deref (verified on the deployed system libc, PoC + report) |
 | [`tdlib/`](tdlib/) | Telegram TDLib | confirmed markdown-v3 metric-mismatch abort (real ASAN build + build-independent PoC) |
+| [`bluez/`](bluez/) | BlueZ 5.85/5.87 (btmon, mesh, obexd) | confirmed SDP/BT legacy-decoder OOB reads+disclosure, monitor uint32-overflow crash (file+live socket), mesh PB-ADV heap OOB write, obexd path issues — beta era |
+| [`zlib/`](zlib/) | zlib 1.3.2 | gzseek64 signed-64 overflow (UB, caller-driven; not CVE-worthy) |
+| [`libfilezilla/`](libfilezilla/) | libfilezilla 0.57.0 | datetime::set signed-64 overflow (UB, stream-reachable) + authoritative RCE-negative sweep |
+| [`libarchive/`](libarchive/) | libarchive RAR5 | CVE-2026-14164 double-free reproduction (regression-window only, not a 0day) + RAR4 RCE cut analysis |
+| [`httpdirfs/`](httpdirfs/) | httpdirfs (FUSE) | confirmed heap OOB write in collect_gumbo_text (CWE-787, remote, pre-auth) |
 | [`sourcepp-vpk/`](sourcepp-vpk/) | [craftablescience/sourcepp](https://github.com/craftablescience/sourcepp) | confirmed VPK-parser vulnerability chain (3 vulns, ASAN-confirmed) |
 | [`can-hub/`](can-hub/) | [can-hub-io/can-hub](https://github.com/can-hub-io/can-hub) | confirmed plaintext-transport authorization bypass (live on vcan0) + disclosure draft |
 
