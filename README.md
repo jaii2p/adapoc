@@ -18,6 +18,7 @@ theoretical.
 
 | section | target | what's inside |
 |---|---|---|
+| [`CISA-KEV-POC/`](CISA-KEV-POC/) | recently-added CISA KEV CVEs with no public PoC | PoC + firmware/protocol analysis for 3: Zyxel GS1900 CGI BOF (from real firmware), ScreenConnect privesc, Windows Shell cmd-injection |
 | [`iOS/`](iOS/) | Apple iOS / iPadOS (stock, unjailbroken) | on-device confirmed findings + report + PoC + generator per finding (+ labeled RE notebook) |
 | [`glibc/`](glibc/) | Debian glibc 2.43-4 | confirmed regex OOM DoS + wordexp NULL-deref (verified on the deployed system libc, PoC + report) |
 | [`tdlib/`](tdlib/) | Telegram TDLib | confirmed markdown-v3 metric-mismatch abort (real ASAN build + build-independent PoC) |
