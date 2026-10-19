@@ -9,13 +9,18 @@ generator. Local-only or disproven artifacts are deliberately excluded.
 | `CVE-2026-86950-coregraphics/` | CoreGraphics glyph-cache OOB write (`aa_cache_render`) | iPhone 26.6.1: 57 crash reports / 4 processes; iPad 18.7.8: 10/10 + 8/8 parameter sweep; **CISA KEV, exploited in the wild** | CWE-787 (OOB write) — RCE-class |
 | `CVE-2026-65346-surface-tiff/` | ImageIO stride-overflow boundary crash (CVE-2026-65346 attack surface; attribution pending — see report) | iPad 18.7.8: Files app fatal crash 4/4 via "Assign to Contact"; assetsd daemon crash via shared album | memory-corruption-class crash (SIGABRT) |
 | `vcard-note-double-dos/` | vCard oversized NOTE → preview renderer jetsam OOM | iPhone 26.6.1: WebContent killed reproducibly on preview | CWE-400 (DoS only — parser guards held) |
+| `chain-13785-37434/` | Chained inflate: libpng CVE-2018-13785 FPE → histogram→FEXTRA bridge → zlib CVE-2022-37434 4 GiB OOB write → write-marker RIP control | **Local-lab confirmed only** (ASAN differential + write-proof driver + browser inflate fixture). On-device topology unproven — see report honesty boundaries | OOB write → RIP control (capability proof) |
 
 ## Excluded on purpose (not device-confirmed)
 
-- zlib CVE-2022-37434 4 GiB OOB write — confirmed locally (ASAN differential),
-  on-device reachability unproven.
+- zlib CVE-2022-37434 4 GiB OOB write — confirmed locally (ASAN differential);
+  on-device reachability unproven. **Note:** shipped under
+  `chain-13785-37434/` as a local-lab-confirmed chain, clearly labeled as such —
+  it lives in the repo for its demonstrated write-what-where/RCE capability
+  proof, not as a device finding.
 - libpng CVE-2018-13785 — confirmed locally, **disproven** on tested iOS
-  (libpng patched since iOS 12 era).
+  (libpng patched since iOS 12 era). Shipped as the H1 link of the chain above
+  on the same labeling terms.
 - PNG/APNG/interlace mutation corpus — no crashes; all paths trap-guarded.
 
 ## Note on the CVE-2026-65346 artifact

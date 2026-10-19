@@ -1,0 +1,40 @@
+<!doctype html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>gzip chunked inflate test</title>
+<style>body{font:16px system-ui;margin:2rem;line-height:1.4}pre{white-space:pre-wrap;background:#eee;padding:1rem;border-radius:8px}.ok{color:#176b2c}.bad{color:#9b1c1c}</style>
+<h1>gzip chunked inflate test</h1>
+<p>This page requests <code>marker.gz</code> and incrementally decompresses it with the browser's streaming gzip decoder.</p>
+<button id="run">request + inflate</button>
+<pre id="out">ready</pre>
+<script>
+const out = document.querySelector('#out');
+const log = (...x) => { out.textContent += '\n' + x.join(' '); };
+async function run() {
+  out.textContent = 'starting…';
+  const url = new URL('wmark-rce-proof/marker.gz', location.href);
+  try {
+    if (!('DecompressionStream' in self)) throw new Error('DecompressionStream is unavailable');
+    const t0 = performance.now();
+    const r = await fetch(url, {cache: 'no-store'});
+    log('HTTP', r.status, r.headers.get('content-type') || '(no content-type)');
+    if (!r.ok || !r.body) throw new Error('request failed or has no body');
+    const reader = r.body.pipeThrough(new DecompressionStream('gzip')).getReader();
+    let chunks = 0, bytes = 0;
+    for (;;) {
+      const x = await reader.read();
+      if (x.done) break;
+      chunks++;
+      bytes += x.value.byteLength;
+      log('chunk', chunks, 'bytes', x.value.byteLength, 'total', bytes);
+    }
+    const ms = (performance.now() - t0).toFixed(1);
+    out.className = 'ok';
+    log('DONE: decompressed', bytes, 'bytes in', chunks, 'chunks; elapsed', ms, 'ms');
+  } catch (e) {
+    out.className = 'bad';
+    log('ERROR:', e && e.stack ? e.stack : e);
+  }
+}
+document.querySelector('#run').addEventListener('click', run);
+run();
+</script>
