@@ -23,6 +23,7 @@ theoretical.
 | [`tdlib/`](tdlib/) | Telegram TDLib | confirmed markdown-v3 metric-mismatch abort (real ASAN build + build-independent PoC) |
 | [`bluez/`](bluez/) | BlueZ 5.85/5.87 (btmon, mesh, obexd) | confirmed SDP/BT legacy-decoder OOB reads+disclosure, monitor uint32-overflow crash (file+live socket), mesh PB-ADV heap OOB write, obexd path issues — beta era |
 | [`zlib/`](zlib/) | zlib 1.3.2 | gzseek64 signed-64 overflow (UB, caller-driven; not CVE-worthy) |
+| [`sma1000-cve-2026-15409-15410/`](sma1000-cve-2026-15409-15410/) | SonicWall SMA1000 | **public-CVE chain reconstruction** (SSRF→Erlang→os:cmd→root), validated end-to-end vs local fixture; not a novel find |
 | [`libfilezilla/`](libfilezilla/) | libfilezilla 0.57.0 | datetime::set signed-64 overflow (UB, stream-reachable) + authoritative RCE-negative sweep |
 | [`libarchive/`](libarchive/) | libarchive RAR5 | CVE-2026-14164 double-free reproduction (regression-window only, not a 0day) + RAR4 RCE cut analysis |
 | [`httpdirfs/`](httpdirfs/) | httpdirfs (FUSE) | confirmed heap OOB write in collect_gumbo_text (CWE-787, remote, pre-auth) |
