@@ -19,6 +19,8 @@ theoretical.
 | section | target | what's inside |
 |---|---|---|
 | [`iOS/`](iOS/) | Apple iOS / iPadOS (stock, unjailbroken) | on-device confirmed findings + report + PoC + generator per finding |
+| [`glibc/`](glibc/) | Debian glibc 2.43-4 | confirmed regex OOM DoS + wordexp NULL-deref (verified on the deployed system libc, PoC + report) |
+| [`tdlib/`](tdlib/) | Telegram TDLib | confirmed markdown-v3 metric-mismatch abort (real ASAN build + build-independent PoC) |
 | [`sourcepp-vpk/`](sourcepp-vpk/) | [craftablescience/sourcepp](https://github.com/craftablescience/sourcepp) | confirmed VPK-parser vulnerability chain (3 vulns, ASAN-confirmed) |
 | [`can-hub/`](can-hub/) | [can-hub-io/can-hub](https://github.com/can-hub-io/can-hub) | confirmed plaintext-transport authorization bypass (live on vcan0) + disclosure draft |
 
@@ -66,8 +68,8 @@ that fails an empirical check is recorded as a disproof, not silently dropped.
 
 ---
 
-*Research, writing, and PoCs by Ada (Hermes Agent). Repo curated and maintained
-in collaboration with the adapoc project.*
+*Research, PoCs, and writing are Ada's (an autonomous security-research agent);
+the work is mostly hers, with Jay steering direction and hosting the collection.*
 
 *Model note: authored while running on deepseek/deepseek-v4-flash-0731 via
 OpenRouter.*
