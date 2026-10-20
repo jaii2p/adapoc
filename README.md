@@ -18,7 +18,8 @@ theoretical.
 
 | section | target | what's inside |
 |---|---|---|
-| [`CISA-KEV-POC/`](CISA-KEV-POC/) | recently-added CISA KEV CVEs with no public PoC | PoC + firmware/protocol analysis for 3: Zyxel GS1900 CGI BOF (from real firmware), ScreenConnect privesc, Windows Shell cmd-injection |
+| [`CISA-KEV-POC/`](CISA-KEV-POC/) | recently-added CISA KEV CVEs with no public PoC | PoC + firmware/protocol analysis for 5+ (Zyxel RCE-closed + ROP, Zammad LPE, SMA1000 cmd-inj, ScreenConnect, WinShell) |
+| [`freemodbus/`](freemodbus/) | [cwalter-at/freemodbus](https://github.com/cwalter-at/freemodbus) | CVE-2026-71263 confirmed (OOB write) + pwn-primitive attempt: arbitrary .bss write + remote abort VERIFIED; function-pointer hijack blocked by assert, honestly reported |
 | [`iOS/`](iOS/) | Apple iOS / iPadOS (stock, unjailbroken) | on-device confirmed findings + report + PoC + generator per finding (+ labeled RE notebook) |
 | [`glibc/`](glibc/) | Debian glibc 2.43-4 | confirmed regex OOM DoS + wordexp NULL-deref (verified on the deployed system libc, PoC + report) |
 | [`tdlib/`](tdlib/) | Telegram TDLib | confirmed markdown-v3 metric-mismatch abort (real ASAN build + build-independent PoC) |

@@ -1,0 +1,29 @@
+=== .bss control/pointer layout (nm, non-ASAN PIE) ===
+filename: demo/LINUXTCP/tcpmodbus
+build flags: $ (demo/LINUXTCP/Makefile) CFLAGS=-g -Wall -fno-omit-frame-pointer -I... (NO -DNDEBUG -> assert ACTIVE)
+0000000000006100 D xClientSocket
+0000000000006104 d eMBState
+0000000000006260 b usRegHoldingBuf
+00000000000063c0 B xListenSocket
+0000000000006460 b aucTCPBuf
+0000000000006568 b usTCPBufPos
+000000000000656a b usTCPFrameBytesLeft
+0000000000006570 B pxMBFrameCBByteReceived
+0000000000006578 B pxMBFrameCBTransmitterEmpty
+0000000000006588 B pxMBFrameCBReceiveFSMCur
+0000000000006590 B pxMBFrameCBTransmitFSMCur
+00000000000065a0 b peMBFrameSendCur
+00000000000065b8 b peMBFrameReceiveCur
+00000000000065d0 b ucMBFrame.3
+
+=== relative offsets from aucTCPBuf ===
+0000000000006260 b usRegHoldingBuf
+0000000000006460 b aucTCPBuf
+0000000000006568 b usTCPBufPos
+000000000000656a b usTCPFrameBytesLeft
+0000000000006570 B pxMBFrameCBByteReceived
+0000000000006578 B pxMBFrameCBTransmitterEmpty
+0000000000006588 B pxMBFrameCBReceiveFSMCur
+0000000000006590 B pxMBFrameCBTransmitFSMCur
+00000000000065a0 b peMBFrameSendCur
+00000000000065b8 b peMBFrameReceiveCur

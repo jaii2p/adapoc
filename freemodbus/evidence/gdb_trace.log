@@ -1,0 +1,46 @@
+Breakpoint 1 at 0x10a0
+Breakpoint 2 at 0x1e5d: file port/porttcp.c, line 252.
+Breakpoint 3 at 0x1eba: file port/porttcp.c, line 261.
+Breakpoint 4 at 0x1fac: file port/porttcp.c, line 315.
+Breakpoint 5 at 0x1ff1: file port/porttcp.c, line 327.
+Breakpoint 6 at 0x278f: file ../../modbus/tcp/mbtcp.c, line 138.
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/usr/lib/x86_64-linux-gnu/libthread_db.so.1".
+[Switching to Thread 0x7ffff7d986c0 (LWP 639441)]
+PRE-RECV   base_off=0 len=7 pos=0 bytesleft=7
+POST-RECV  pos=0x7 bytesleft=0x0
+0x55555555a562 <aucTCPBuf+258>:	0x00	0x00	0x00	0x00	0x00	0x00	0x07	0x00
+0x55555555a56a <usTCPFrameBytesLeft>:	0x00	0x00	0x00	0x00
+PRE-RECV   base_off=7 len=263 pos=7 bytesleft=263
+POST-RECV  pos=0x0 bytesleft=0x107
+0x55555555a562 <aucTCPBuf+258>:	0x41	0x41	0x41	0x41	0x41	0x43	0x00	0x00
+0x55555555a56a <usTCPFrameBytesLeft>:	0x07	0x01	0x42	0x42
+PRE-RECV   base_off=0 len=263 pos=0 bytesleft=263
+POST-RECV  pos=0x107 bytesleft=0x0
+0x55555555a562 <aucTCPBuf+258>:	0x44	0x44	0x44	0x44	0x44	0x43	0x07	0x01
+0x55555555a56a <usTCPFrameBytesLeft>:	0x00	0x00	0x42	0x42
+GETREQUEST len_in=0x107
+E-MB-TCP-SEND usLength=2 pucFrame_off=7
+SEND-RESP  len=9 base_off=0xffffaaaaaaaa5ba9 peMBFrameSendCur=0x55555555677b peMBFrameReceiveCur=0x5555555566e2 pxMBFrameCBByteReceived=(nil)
+PRE-RECV   base_off=0 len=7 pos=0 bytesleft=7
+PRE-RECV   base_off=0 len=7 pos=0 bytesleft=7
+POST-RECV  pos=0x7 bytesleft=0x0
+0x55555555a562 <aucTCPBuf+258>:	0x44	0x44	0x44	0x44	0x44	0x43	0x07	0x00
+0x55555555a56a <usTCPFrameBytesLeft>:	0x00	0x00	0x42	0x42
+PRE-RECV   base_off=7 len=263 pos=7 bytesleft=263
+POST-RECV  pos=0x140 bytesleft=0x1
+0x55555555a562 <aucTCPBuf+258>:	0x41	0x41	0x41	0x41	0x41	0x43	0x40	0x01
+0x55555555a56a <usTCPFrameBytesLeft>:	0x01	0x00	0x42	0x42
+### ASSERT_FAIL hit! pos=0x140 bytesleft=0x1 header_uslength=0x108
+0x55555555a558 <aucTCPBuf+248>:	0x41	0x41	0x41	0x41	0x41	0x41	0x41	0x41
+0x55555555a560 <aucTCPBuf+256>:	0x41	0x41	0x41	0x41	0x41	0x41	0x41	0x43
+#0  0x00007ffff7dd4bb0 in __assert_fail () from /usr/lib/x86_64-linux-gnu/libc.so.6
+#1  0x0000555555555f98 in xMBPortTCPPool () at port/porttcp.c:287
+#2  0x00005555555559c4 in xMBPortEventGet (eEvent=0x7ffff7d97e74) at port/portevent.c:69
+#3  0x00005555555564b3 in eMBPoll () at ../../modbus/mb.c:414
+#4  0x0000555555555564 in pvPollingThread (pvParameter=0x0) at demo.c:191
+#5  0x00007ffff7e30db8 in ?? () from /usr/lib/x86_64-linux-gnu/libc.so.6
+### END ASSERT block
+
+Thread 2 "tcpmodbus" received signal SIGABRT, Aborted.
+0x00007ffff7e32d0c in ?? () from /usr/lib/x86_64-linux-gnu/libc.so.6

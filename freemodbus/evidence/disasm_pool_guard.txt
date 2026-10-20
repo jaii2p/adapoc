@@ -1,0 +1,119 @@
+=== xMBPortTCPPool key disassembly (PIE, file offsets) ===
+runtime base 0x555555554000 (from gdb run); addresses below are file offsets
+    1e01:	0f b7 05 62 47 00 00 	movzx  eax,WORD PTR [rip+0x4762]        # 656a <usTCPFrameBytesLeft>
+    1e08:	66 3d 07 01          	cmp    ax,0x107
+    1e0c:	76 21                	jbe    1e2f <xMBPortTCPPool+0x265>
+    1e0e:	8b 05 ec 42 00 00    	mov    eax,DWORD PTR [rip+0x42ec]        # 6100 <xClientSocket>
+    1e14:	89 c7                	mov    edi,eax
+    1e16:	e8 b5 f2 ff ff       	call   10d0 <close@plt>
+    1e1b:	c7 05 db 42 00 00 ff 	mov    DWORD PTR [rip+0x42db],0xffffffff        # 6100 <xClientSocket>
+    1e22:	ff ff ff 
+    1e25:	b8 01 00 00 00       	mov    eax,0x1
+    1e2a:	e9 6f 01 00 00       	jmp    1f9e <xMBPortTCPPool+0x3d4>
+    1e2f:	0f b7 05 34 47 00 00 	movzx  eax,WORD PTR [rip+0x4734]        # 656a <usTCPFrameBytesLeft>
+    1e36:	0f b7 d0             	movzx  edx,ax
+    1e39:	0f b7 05 28 47 00 00 	movzx  eax,WORD PTR [rip+0x4728]        # 6568 <usTCPBufPos>
+    1e40:	0f b7 c0             	movzx  eax,ax
+    1e43:	48 98                	cdqe
+    1e45:	48 8d 0d 14 46 00 00 	lea    rcx,[rip+0x4614]        # 6460 <aucTCPBuf>
+    1e4c:	48 8d 34 08          	lea    rsi,[rax+rcx*1]
+    1e50:	8b 05 aa 42 00 00    	mov    eax,DWORD PTR [rip+0x42aa]        # 6100 <xClientSocket>
+    1e56:	b9 00 00 00 00       	mov    ecx,0x0
+    1e5b:	89 c7                	mov    edi,eax
+    1e5d:	e8 ce f1 ff ff       	call   1030 <recv@plt>
+    1e62:	89 45 c4             	mov    DWORD PTR [rbp-0x3c],eax
+    1e65:	83 7d c4 ff          	cmp    DWORD PTR [rbp-0x3c],0xffffffff
+    1e69:	74 06                	je     1e71 <xMBPortTCPPool+0x2a7>
+    1e6b:	83 7d c4 00          	cmp    DWORD PTR [rbp-0x3c],0x0
+    1e6f:	75 21                	jne    1e92 <xMBPortTCPPool+0x2c8>
+    1e71:	8b 05 89 42 00 00    	mov    eax,DWORD PTR [rip+0x4289]        # 6100 <xClientSocket>
+    1e77:	89 c7                	mov    edi,eax
+    1e79:	e8 52 f2 ff ff       	call   10d0 <close@plt>
+    1e7e:	c7 05 78 42 00 00 ff 	mov    DWORD PTR [rip+0x4278],0xffffffff        # 6100 <xClientSocket>
+    1e85:	ff ff ff 
+    1e88:	b8 01 00 00 00       	mov    eax,0x1
+    1e8d:	e9 0c 01 00 00       	jmp    1f9e <xMBPortTCPPool+0x3d4>
+    1e92:	8b 45 c4             	mov    eax,DWORD PTR [rbp-0x3c]
+    1e95:	89 c2                	mov    edx,eax
+    1e97:	0f b7 05 ca 46 00 00 	movzx  eax,WORD PTR [rip+0x46ca]        # 6568 <usTCPBufPos>
+    1e9e:	01 d0                	add    eax,edx
+    1ea0:	66 89 05 c1 46 00 00 	mov    WORD PTR [rip+0x46c1],ax        # 6568 <usTCPBufPos>
+    1ea7:	0f b7 05 bc 46 00 00 	movzx  eax,WORD PTR [rip+0x46bc]        # 656a <usTCPFrameBytesLeft>
+    1eae:	8b 55 c4             	mov    edx,DWORD PTR [rbp-0x3c]
+    1eb1:	29 d0                	sub    eax,edx
+    1eb3:	66 89 05 b0 46 00 00 	mov    WORD PTR [rip+0x46b0],ax        # 656a <usTCPFrameBytesLeft>
+    1eba:	0f b7 05 a7 46 00 00 	movzx  eax,WORD PTR [rip+0x46a7]        # 6568 <usTCPBufPos>
+    1ec1:	66 83 f8 06          	cmp    ax,0x6
+    1ec5:	0f 86 bd fd ff ff    	jbe    1c88 <xMBPortTCPPool+0xbe>
+    1ecb:	0f b6 05 92 45 00 00 	movzx  eax,BYTE PTR [rip+0x4592]        # 6464 <aucTCPBuf+0x4>
+    1ed2:	0f b6 c0             	movzx  eax,al
+    1ed5:	c1 e0 08             	shl    eax,0x8
+    1ed8:	66 89 45 c2          	mov    WORD PTR [rbp-0x3e],ax
+    1edc:	0f b6 05 82 45 00 00 	movzx  eax,BYTE PTR [rip+0x4582]        # 6465 <aucTCPBuf+0x5>
+    1ee3:	0f b6 c0             	movzx  eax,al
+    1ee6:	66 09 45 c2          	or     WORD PTR [rbp-0x3e],ax
+    1eea:	0f b7 45 c2          	movzx  eax,WORD PTR [rbp-0x3e]
+    1eee:	8d 50 05             	lea    edx,[rax+0x5]
+    1ef1:	0f b7 05 70 46 00 00 	movzx  eax,WORD PTR [rip+0x4670]        # 6568 <usTCPBufPos>
+    1ef8:	0f b7 c0             	movzx  eax,ax
+    1efb:	39 c2                	cmp    edx,eax
+    1efd:	7c 29                	jl     1f28 <xMBPortTCPPool+0x35e>
+    1eff:	0f b7 15 62 46 00 00 	movzx  edx,WORD PTR [rip+0x4662]        # 6568 <usTCPBufPos>
+    1f06:	0f b7 45 c2          	movzx  eax,WORD PTR [rbp-0x3e]
+    1f0a:	29 d0                	sub    eax,edx
+    1f0c:	83 c0 06             	add    eax,0x6
+    1f0f:	66 89 05 54 46 00 00 	mov    WORD PTR [rip+0x4654],ax        # 656a <usTCPFrameBytesLeft>
+    1f16:	e8 45 f1 ff ff       	call   1060 <clock@plt>
+    1f1b:	48 89 45 f0          	mov    QWORD PTR [rbp-0x10],rax
+    1f1f:	c6 45 ff 01          	mov    BYTE PTR [rbp-0x1],0x1
+    1f23:	e9 60 fd ff ff       	jmp    1c88 <xMBPortTCPPool+0xbe>
+    1f28:	0f b7 05 39 46 00 00 	movzx  eax,WORD PTR [rip+0x4639]        # 6568 <usTCPBufPos>
+    1f2f:	0f b7 d0             	movzx  edx,ax
+    1f32:	0f b7 45 c2          	movzx  eax,WORD PTR [rbp-0x3e]
+    1f36:	83 c0 06             	add    eax,0x6
+    1f39:	39 c2                	cmp    edx,eax
+    1f3b:	75 1d                	jne    1f5a <xMBPortTCPPool+0x390>
+    1f3d:	bf 01 00 00 00       	mov    edi,0x1
+    1f42:	e8 26 fa ff ff       	call   196d <xMBPortEventPost>
+    1f47:	48 c7 45 e0 00 00 00 	mov    QWORD PTR [rbp-0x20],0x0
+    1f4e:	00 
+    1f4f:	c6 45 ff 00          	mov    BYTE PTR [rbp-0x1],0x0
+    1f53:	b8 01 00 00 00       	mov    eax,0x1
+    1f58:	eb 44                	jmp    1f9e <xMBPortTCPPool+0x3d4>
+    1f5a:	0f b7 05 07 46 00 00 	movzx  eax,WORD PTR [rip+0x4607]        # 6568 <usTCPBufPos>
+    1f61:	0f b7 d0             	movzx  edx,ax
+    1f64:	0f b7 45 c2          	movzx  eax,WORD PTR [rbp-0x3e]
+    1f68:	83 c0 06             	add    eax,0x6
+    1f6b:	39 c2                	cmp    edx,eax
+    1f6d:	0f 8e 15 fd ff ff    	jle    1c88 <xMBPortTCPPool+0xbe>
+    1f73:	48 8d 15 9e 23 00 00 	lea    rdx,[rip+0x239e]        # 4318 <__PRETTY_FUNCTION__.0>
+    1f7a:	48 8d 35 1d 23 00 00 	lea    rsi,[rip+0x231d]        # 429e <_IO_stdin_used+0x29e>
+    1f81:	48 8d 05 28 23 00 00 	lea    rax,[rip+0x2328]        # 42b0 <_IO_stdin_used+0x2b0>
+    1f88:	48 89 d1             	mov    rcx,rdx
+    1f8b:	ba 1f 01 00 00       	mov    edx,0x11f
+    1f90:	48 89 c7             	mov    rdi,rax
+    1f93:	e8 08 f1 ff ff       	call   10a0 <__assert_fail@plt>
+    1f98:	90                   	nop
+    1f99:	e9 ea fc ff ff       	jmp    1c88 <xMBPortTCPPool+0xbe>
+
+=== guard compare (bytesleft > 263 closes client) ===
+    1e01:	0f b7 05 62 47 00 00 	movzx  eax,WORD PTR [rip+0x4762]        # 656a <usTCPFrameBytesLeft>
+    1e08:	66 3d 07 01          	cmp    ax,0x107
+    1e0c:	76 21                	jbe    1e2f <xMBPortTCPPool+0x265>
+    1e0e:	8b 05 ec 42 00 00    	mov    eax,DWORD PTR [rip+0x42ec]        # 6100 <xClientSocket>
+    1e14:	89 c7                	mov    edi,eax
+    1e16:	e8 b5 f2 ff ff       	call   10d0 <close@plt>
+    1e1b:	c7 05 db 42 00 00 ff 	mov    DWORD PTR [rip+0x42db],0xffffffff        # 6100 <xClientSocket>
+    1e22:	ff ff ff 
+    1e25:	b8 01 00 00 00       	mov    eax,0x1
+    1e2a:	e9 6f 01 00 00       	jmp    1f9e <xMBPortTCPPool+0x3d4>
+    1e2f:	0f b7 05 34 47 00 00 	movzx  eax,WORD PTR [rip+0x4734]        # 656a <usTCPFrameBytesLeft>
+    1e36:	0f b7 d0             	movzx  edx,ax
+    1e39:	0f b7 05 28 47 00 00 	movzx  eax,WORD PTR [rip+0x4728]        # 6568 <usTCPBufPos>
+    1e40:	0f b7 c0             	movzx  eax,ax
+    1e43:	48 98                	cdqe
+    1e45:	48 8d 0d 14 46 00 00 	lea    rcx,[rip+0x4614]        # 6460 <aucTCPBuf>
+    1e4c:	48 8d 34 08          	lea    rsi,[rax+rcx*1]
+    1e50:	8b 05 aa 42 00 00    	mov    eax,DWORD PTR [rip+0x42aa]        # 6100 <xClientSocket>
+    1e56:	b9 00 00 00 00       	mov    ecx,0x0
+    1e5b:	89 c7                	mov    edi,eax

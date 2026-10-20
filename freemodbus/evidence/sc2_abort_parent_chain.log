@@ -1,0 +1,22 @@
+PRE-RECV   base_off=0 len=7 pos=0 bytesleft=7
+PRE-RECV   base_off=0 len=7 pos=0 bytesleft=7
+POST-RECV  pos=0x7 bytesleft=0x0
+0x55555555a562 <aucTCPBuf+258>:	0x44	0x44	0x44	0x44	0x44	0x43	0x07	0x00
+0x55555555a56a <usTCPFrameBytesLeft>:	0x00	0x00	0x42	0x42
+PRE-RECV   base_off=7 len=263 pos=7 bytesleft=263
+POST-RECV  pos=0x140 bytesleft=0x1
+0x55555555a562 <aucTCPBuf+258>:	0x41	0x41	0x41	0x41	0x41	0x43	0x40	0x01
+0x55555555a56a <usTCPFrameBytesLeft>:	0x01	0x00	0x42	0x42
+### ASSERT_FAIL hit! pos=0x140 bytesleft=0x1 header_uslength=0x108
+0x55555555a558 <aucTCPBuf+248>:	0x41	0x41	0x41	0x41	0x41	0x41	0x41	0x41
+0x55555555a560 <aucTCPBuf+256>:	0x41	0x41	0x41	0x41	0x41	0x41	0x41	0x43
+#0  0x00007ffff7dd4bb0 in __assert_fail () from /usr/lib/x86_64-linux-gnu/libc.so.6
+#1  0x0000555555555f98 in xMBPortTCPPool () at port/porttcp.c:287
+#2  0x00005555555559c4 in xMBPortEventGet (eEvent=0x7ffff7d97e74) at port/portevent.c:69
+#3  0x00005555555564b3 in eMBPoll () at ../../modbus/mb.c:414
+#4  0x0000555555555564 in pvPollingThread (pvParameter=0x0) at demo.c:191
+#5  0x00007ffff7e30db8 in ?? () from /usr/lib/x86_64-linux-gnu/libc.so.6
+### END ASSERT block
+
+Thread 2 "tcpmodbus" received signal SIGABRT, Aborted.
+0x00007ffff7e32d0c in ?? () from /usr/lib/x86_64-linux-gnu/libc.so.6

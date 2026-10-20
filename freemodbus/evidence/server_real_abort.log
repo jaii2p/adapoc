@@ -1,0 +1,1 @@
+tcpmodbus: port/porttcp.c:287: xMBPortTCPPool: Assertion `usTCPBufPos <= ( MB_TCP_UID + usLength )' failed.
